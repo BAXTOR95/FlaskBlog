@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: FlaskBlog
+    buildCommand: python3 -m pip install -r requirements.txt
+    env: python
+    postDeployCommand: flask --app main.py create-admin "$ADMIN_EMAIL" "$ADMIN_PASSWORD" "$ADMIN_NAME"
