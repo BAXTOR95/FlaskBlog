@@ -24,7 +24,7 @@ from hashlib import md5
 from config import Config
 
 # Importing necessary commands and forms from local modules
-from commands import create_admin, init_db
+from commands import create_admin, init_db, create_admin_if_not_exists
 from forms import BlogPostForm, ContactForm, RegisterForm, LoginForm, CommentForm
 
 app = Flask(__name__)
@@ -177,6 +177,7 @@ class Comment(db.Model):
 
 with app.app_context():
     db.create_all()  # Creates all tables
+    create_admin_if_not_exists()  # Creates an admin user if one does not exist
 
 
 def get_all_posts():
