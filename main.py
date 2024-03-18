@@ -24,7 +24,7 @@ from hashlib import md5
 from config import Config
 
 # Importing necessary commands and forms from local modules
-from commands import create_admin
+from commands import create_admin, init_db
 from forms import BlogPostForm, ContactForm, RegisterForm, LoginForm, CommentForm
 
 app = Flask(__name__)
@@ -34,6 +34,9 @@ Bootstrap5(app)
 
 # Register the custom Flask CLI command for creating an admin user
 app.cli.add_command(create_admin)
+
+# Register the custom Flask CLI command for initializing the database
+app.cli.add_command(init_db)
 
 # Initialize Flask-Login for handling user sessions
 login_manager = LoginManager()
