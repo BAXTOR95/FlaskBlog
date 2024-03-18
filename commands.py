@@ -16,7 +16,7 @@ def create_admin(email, password, name):
     hashed_password = generate_password_hash(
         password, method='pbkdf2:sha256', salt_length=8
     )
-    admin_user = User(email=email, name=name, password=hashed_password, is_admin=True)
+    admin_user = User(email=email, name=name, password=hashed_password, is_admin=1)
     db.session.add(admin_user)
     db.session.commit()
     click.echo(f"Admin {name} created successfully.")
@@ -38,7 +38,7 @@ def create_admin_if_not_exists():
             admin_password, method='pbkdf2:sha256', salt_length=8
         )
         admin_user = User(
-            email=admin_email, name=admin_name, password=hashed_password, is_admin=True
+            email=admin_email, name=admin_name, password=hashed_password, is_admin=1
         )
         db.session.add(admin_user)
         db.session.commit()
