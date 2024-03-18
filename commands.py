@@ -18,3 +18,12 @@ def create_admin(email, password, name):
     db.session.add(admin_user)
     db.session.commit()
     click.echo(f"Admin {name} created successfully.")
+
+
+@click.command("init-db")
+@with_appcontext
+def init_db():
+    from main import db, Base  # Import locally to avoid circular import
+
+    Base.metadata.create_all(db.engine)
+    click.echo('Database initialized!')
