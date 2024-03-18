@@ -1,5 +1,6 @@
 services:
   - type: web
     name: FlaskBlog
+    # other necessary configuration options like build and start commands
     env: python
-    startCommand: './startup_script.sh'
+    postDeployCommand: flask --app main.py create-admin "$ADMIN_EMAIL" "$ADMIN_PASSWORD" "$ADMIN_NAME"
