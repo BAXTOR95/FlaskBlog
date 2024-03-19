@@ -2,6 +2,11 @@
 
 FlaskBlog is a web blogging platform built with Flask, a micro web framework written in Python. This project aims to provide a simple yet functional blog platform where users can share their thoughts and ideas through posts. FlaskBlog includes features such as user authentication, post creation, editing, and deletion, and admin management.
 
+## Live Version
+
+A live version of FlaskBlog is available at the following link: [https://flaskblog-ws8o.onrender.com](https://flaskblog-ws8o.onrender.com).
+
+
 ## Prerequisites
 
 Before you begin, ensure you have met the following requirements:
