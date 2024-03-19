@@ -1,4 +1,5 @@
 from __future__ import annotations
+import os
 from typing import List
 from datetime import datetime
 from flask import Flask, render_template, redirect, url_for, flash, abort
@@ -177,7 +178,6 @@ class Comment(db.Model):
 
 with app.app_context():
     db.create_all()  # Creates all tables
-    create_admin_if_not_exists()  # Creates an admin user if one does not exist
 
 
 def get_all_posts():
@@ -563,4 +563,10 @@ def delete_comment(post_id, comment_id):
 
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    # Ensures this runs only once and not on the reloader subprocess
+    PROD = True if os.environ.get('PROD', False) == 'True' else False
+    if PROD:
+        with app.app_context():
+            create_admin_if_not_exists()
+
+    app.run(debug=not PROD)

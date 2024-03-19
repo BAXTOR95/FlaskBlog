@@ -11,6 +11,16 @@ from sqlalchemy import exists
 @click.argument("name")
 @with_appcontext
 def create_admin(email, password, name):
+    """Create an admin user
+
+    Args:
+        email: Email of the admin user
+        password: Password of the admin user
+        name: Name of the admin user
+
+    Returns:
+        None
+    """
     from main import db, User  # Import locally to avoid circular import
 
     hashed_password = generate_password_hash(
@@ -23,6 +33,11 @@ def create_admin(email, password, name):
 
 
 def create_admin_if_not_exists():
+    """Create an admin user if it does not exist
+
+    Returns:
+        None
+    """
     from main import db, User  # Import locally to avoid circular import
 
     # Ensure environment variables are set
@@ -52,6 +67,11 @@ def create_admin_if_not_exists():
 @click.command("init-db")
 @with_appcontext
 def init_db():
+    """Initialize the database
+
+    Returns:
+        None
+    """
     from main import db, Base  # Import locally to avoid circular import
 
     Base.metadata.create_all(db.engine)
